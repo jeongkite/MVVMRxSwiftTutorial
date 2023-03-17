@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		730CF9BF120A5750FC37F58C /* Pods_MVVMRxSwiftTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5807A31D7BE1F6FB29EC23CD /* Pods_MVVMRxSwiftTutorial.framework */; };
 		DD0E469A29C426B700366F07 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E469929C426B700366F07 /* Coordinator.swift */; };
+		DD3E802E29C42BB4001860AD /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3E802D29C42BB4001860AD /* Article.swift */; };
+		DD3E803129C42E6B001860AD /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3E803029C42E6B001860AD /* ArticleService.swift */; };
 		E5A2AC3F29C40BB800257E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2AC3E29C40BB700257E67 /* AppDelegate.swift */; };
 		E5A2AC4129C40BB800257E67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2AC4029C40BB800257E67 /* SceneDelegate.swift */; };
 		E5A2AC4829C40BB800257E67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5A2AC4729C40BB800257E67 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 		942DD3ED1D9FF8AAAAAEED74 /* Pods-MVVMRxSwiftTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMRxSwiftTutorial.debug.xcconfig"; path = "Target Support Files/Pods-MVVMRxSwiftTutorial/Pods-MVVMRxSwiftTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		AF7E1E76F9037C4BFE65F6EE /* Pods-MVVMRxSwiftTutorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMRxSwiftTutorial.release.xcconfig"; path = "Target Support Files/Pods-MVVMRxSwiftTutorial/Pods-MVVMRxSwiftTutorial.release.xcconfig"; sourceTree = "<group>"; };
 		DD0E469929C426B700366F07 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DD3E802D29C42BB4001860AD /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		DD3E803029C42E6B001860AD /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		E5A2AC3B29C40BB700257E67 /* MVVMRxSwiftTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMRxSwiftTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5A2AC3E29C40BB700257E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5A2AC4029C40BB800257E67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DD3E802C29C42BA7001860AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DD3E802D29C42BB4001860AD /* Article.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DD3E802F29C42E59001860AD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DD3E803029C42E6B001860AD /* ArticleService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		E5A2AC3229C40BB700257E67 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +100,8 @@
 		E5A2AC3D29C40BB700257E67 /* MVVMRxSwiftTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				DD3E802F29C42E59001860AD /* Services */,
+				DD3E802C29C42BA7001860AD /* Models */,
 				E5A2AC5229C40C2100257E67 /* Controllers */,
 				E5A2AC3E29C40BB700257E67 /* AppDelegate.swift */,
 				E5A2AC4029C40BB800257E67 /* SceneDelegate.swift */,
@@ -215,8 +237,10 @@
 			files = (
 				DD0E469A29C426B700366F07 /* Coordinator.swift in Sources */,
 				E5A2AC3F29C40BB800257E67 /* AppDelegate.swift in Sources */,
+				DD3E803129C42E6B001860AD /* ArticleService.swift in Sources */,
 				E5A2AC4129C40BB800257E67 /* SceneDelegate.swift in Sources */,
 				E5A2AC5429C40C4C00257E67 /* RootViewController.swift in Sources */,
+				DD3E802E29C42BB4001860AD /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
