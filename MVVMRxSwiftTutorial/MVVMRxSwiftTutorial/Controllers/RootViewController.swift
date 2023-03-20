@@ -15,11 +15,12 @@ class RootViewController: UIViewController {
     let disposeBag = DisposeBag()
     let viewModel: RootViewModel
     
-    private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .blue
+    private var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+
+        collectionView.backgroundColor = .systemBackground
         return collectionView
     }()
     
@@ -42,6 +43,8 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        collectionView.delegate = self
+        collectionView.dataSource = self
         configureCollectionView()
         configureUI()
         fetchArticles()
@@ -50,7 +53,7 @@ class RootViewController: UIViewController {
     
     // MARK: Configures
     func configureUI() {
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,23 +68,25 @@ class RootViewController: UIViewController {
 
     // MARK: Helpers
     func fetchArticles() {
-        viewModel.fetchArticles().subscribe(onNext: { articleViewModel in
-            self.articleViewModel.accept(articleViewModel)
+        viewModel.fetchArticles().subscribe(onNext: { articleViewModels in
+            self.articleViewModel.accept(articleViewModels)
         }).disposed(by: disposeBag)
     }
     
     func subscribe() {
-        self.articleViewModelObserver
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { articles in
-                print(articles)
-                self.collectionView.reloadData()
+        self.articleViewModelObserver.subscribe(onNext: { articles in
+                print("articles")
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    print("reload")
+                }
             }).disposed(by: disposeBag)
     }
 }
 
 extension RootViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(self.articleViewModel.value.count)
         return self.articleViewModel.value.count
     }
     
@@ -89,6 +94,7 @@ extension RootViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ArticleCollectionViewCell
         let articleViewModel = self.articleViewModel.value[indexPath.row]
         cell.viewModel.onNext(articleViewModel)
+        
         return cell
     }
     
