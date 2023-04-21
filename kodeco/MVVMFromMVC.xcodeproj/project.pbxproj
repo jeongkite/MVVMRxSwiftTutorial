@@ -21,6 +21,7 @@
 		D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */; };
 		DD8F3FC129F25C2600F27844 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8F3FC029F25C2600F27844 /* Box.swift */; };
 		DD8F3FC329F2645200F27844 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8F3FC229F2645200F27844 /* WeatherViewModel.swift */; };
+		DD8F3FC529F2879000F27844 /* WeatherViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8F3FC429F2879000F27844 /* WeatherViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD8F3FC029F25C2600F27844 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		DD8F3FC229F2645200F27844 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		DD8F3FC429F2879000F27844 /* WeatherViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				3864C3ED237CC1F4000C9CA0 /* LocationGeocoderTests.swift */,
 				3853FB7C237B8D1D00835B42 /* Info.plist */,
 				3853FB87237B9C0100835B42 /* WeatherbitExample.json */,
+				DD8F3FC429F2879000F27844 /* WeatherViewModelTests.swift */,
 			);
 			path = MVVMFromMVCTests;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				3864C3EE237CC1F4000C9CA0 /* LocationGeocoderTests.swift in Sources */,
 				3853FB7B237B8D1D00835B42 /* WeatherbitDataTests.swift in Sources */,
+				DD8F3FC529F2879000F27844 /* WeatherViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
