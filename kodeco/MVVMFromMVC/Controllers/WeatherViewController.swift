@@ -47,10 +47,24 @@ class WeatherViewController: UIViewController {
     viewModel.locationName.bind { [weak self] locationName in
       self?.cityLabel.text = locationName
     }
-    viewModel.date.bind { [weak self] date in
-      self?.dateLabel.text = date
+    viewModel.weatherInfo.bind { [weak self] weatherInfo in
+      self?.dateLabel.text = weatherInfo.datetime
+      self?.currentIcon.image = UIImage(named: weatherInfo.weatherIcon)
+      self?.currentSummaryLabel.text = "\(weatherInfo.weatherDescription) - \(weatherInfo.temp)℉"
+
     }
   }
 
-  
+    @IBAction func changeLocationButtonDidTap(_ sender: Any) {
+      let alert = UIAlertController(title: "Choose location", message: nil, preferredStyle: .alert)
+      alert.addTextField()
+      
+      let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned alert, weak self] _ in
+        guard let newLocation = alert.textFields?.first?.text else { return }
+        self?.viewModel.changeLocation(to: newLocation)
+      }
+      alert.addAction(submitAction)
+      present(alert, animated: true)
+    }
+    
 }

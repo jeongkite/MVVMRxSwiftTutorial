@@ -33,11 +33,19 @@
 import Foundation
 import UIKit.UIImage
 
+struct WeatherInfo {
+  var temp: Double
+  var datetime: String
+  var weatherIcon: String
+  var weatherDescription: String
+}
+
 public class WeatherViewModel {
   static let defaultAddress = "Seoul"
   private let geocoder = LocationGeocoder()
   let locationName = Box("Loading...")
   let date = Box(" ")
+  var weatherInfo = Box(WeatherInfo(temp: 0.0, datetime: "", weatherIcon: "", weatherDescription: ""))
   
   init() {
     changeLocation(to: Self.defaultAddress)
@@ -72,6 +80,10 @@ public class WeatherViewModel {
           return
         }
         self.date.value = self.dateFormatter.string(from: weatherData.date)
+        self.weatherInfo.value.datetime = self.dateFormatter.string(from: weatherData.date)
+        self.weatherInfo.value.temp = weatherData.currentTemp
+        self.weatherInfo.value.weatherIcon = weatherData.iconName
+        self.weatherInfo.value.weatherDescription = weatherData.description
     }
   }
 }
