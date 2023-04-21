@@ -37,10 +37,17 @@ public class WeatherViewModel {
   static let defaultAddress = "Seoul"
   private let geocoder = LocationGeocoder()
   let locationName = Box("Loading...")
+  let date = Box(" ")
   
   init() {
     changeLocation(to: Self.defaultAddress)
   }
+  
+  private let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE, MMM d"
+    return dateFormatter
+  }()
   
   func changeLocation(to newLocation: String) {
     locationName.value = "Loading..."
@@ -64,14 +71,7 @@ public class WeatherViewModel {
         else {
           return
         }
-//      self.dateLabel.text =
-//        self.dateFormatter.string(from: weatherData.date)
-//      self.currentIcon.image = UIImage(named: weatherData.iconName)
-//      let temp = self.tempFormatter.string(
-//        from: weatherData.currentTemp as NSNumber) ?? ""
-//      self.currentSummaryLabel.text =
-//        "\(weatherData.description) - \(temp)℉"
-//      self.forecastSummary.text = "\nSummary: \(weatherData.description)"
+        self.date.value = self.dateFormatter.string(from: weatherData.date)
     }
   }
 }
