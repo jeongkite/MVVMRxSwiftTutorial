@@ -34,6 +34,8 @@ class ChocolatesOfTheWorldViewController: UIViewController {
   @IBOutlet private var cartButton: UIBarButtonItem!
   @IBOutlet private var tableView: UITableView!
   let europeanChocolates = Chocolate.ofEurope
+  
+  private let disposeBag = DisposeBag()
 }
 
 //MARK: View Lifecycle
@@ -44,25 +46,28 @@ extension ChocolatesOfTheWorldViewController {
     
     tableView.dataSource = self
     tableView.delegate = self
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    updateCartButton()
+    setupCartObserver()
   }
 }
 
 //MARK: - Rx Setup
 private extension ChocolatesOfTheWorldViewController {
-  
-}
-
-//MARK: - Imperative methods
-private extension ChocolatesOfTheWorldViewController {
-  func updateCartButton() {
-    cartButton.title = "\(ShoppingCart.sharedCart.chocolates.count) 🍫"
+  func setupCartObserver() {
+    ShoppingCart.sharedCart.chocolates.asObservable()
+      .subscribe(onNext: {
+        [unowned self] chocolates in
+        self.cartButton.title = "\(chocolates.count) 🍫"
+      })
+      .disposed(by: disposeBag)
   }
 }
+
+////MARK: - Imperative methods
+//private extension ChocolatesOfTheWorldViewController {
+//  func updateCartButton() {
+//    cartButton.title = "\(ShoppingCart.sharedCart.chocolates.value.count) 🍫"
+//  }
+//}
 
 // MARK: - Table view data source
 extension ChocolatesOfTheWorldViewController: UITableViewDataSource {
@@ -93,8 +98,9 @@ extension ChocolatesOfTheWorldViewController: UITableViewDelegate {
     tableView.deselectRow(at: indexPath, animated: true)
     
     let chocolate = europeanChocolates[indexPath.row]
-    ShoppingCart.sharedCart.chocolates.append(chocolate)
-    updateCartButton()
+    let newValue = ShoppingCart.sharedCart.chocolates.value + [chocolate]
+    ShoppingCart.sharedCart.chocolates.accept(newValue)
+    
   }
 }
 
