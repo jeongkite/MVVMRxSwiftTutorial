@@ -51,7 +51,6 @@ class WeatherViewController: UIViewController {
       self?.dateLabel.text = weatherInfo.datetime
       self?.currentIcon.image = UIImage(named: weatherInfo.weatherIcon)
       self?.currentSummaryLabel.text = "\(weatherInfo.weatherDescription) - \(weatherInfo.temp)℉"
-
     }
   }
 
